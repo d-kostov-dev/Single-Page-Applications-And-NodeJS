@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="appMain" data-ng-controller="HeaderController" data-ng-cloak>
+<head>
+    <title>{{pageTitle}}</title>
+    <link href="content/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="content/css/app.css" rel="stylesheet"/>
+    <link href="https://code.jquery.com/ui/1.11.1/themes/sunny/jquery-ui.css" rel="stylesheet"/>
+    <link href="content/css/jquery-ui-timepicker-addon.css" rel="stylesheet"/>
+	
+</head>
+<body>
+
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/">Home</a>
+                <ul class="nav navbar-nav">
+                    <li><a href="#/drivers">Drivers</a></li>
+                    <li><a href="#/trips">Trips</a></li>
+                    <li data-ng-show="userData.isAuth"><a href="#/trips/create">Create Trip</a></li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
+                <ul class="nav navbar-nav navbar-right">
+                    <li data-ng-show="userData.isAuth"><a href="#">Welcome {{userData.userName}}</a></li>
+                    <li data-ng-show="userData.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>
+                    <li data-ng-show="!userData.isAuth"><a href="#/login">Login</a></li>
+                    <li data-ng-show="!userData.isAuth"><a href="#/signup">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div data-ng-view>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div id="footer" data-ng-controller="FooterController">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-muted text-center">
+                        Made By <a href="{{authorLink}}">{{author}}</a> | Powered By {{poweredBy}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3rd party libraries -->
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/jquery-ui.min.js"></script>
+    <script src="libs/jquery-ui-timepicker-addon.js"></script>
+    <script src="libs/angularJs/angular.js"></script>
+    <script src="libs/angularJs/angular-route.js"></script>
+    <script src="libs/angular-local-storage.min.js"></script>
+    <script src="libs/httpQRequest.js"></script>
+
+    <!-- Load app main script -->
+    <script src="appMain.js"></script>
+
+    <!-- Load Directives -->
+    <script src="directives/DatepickerDirective.js"></script>
+    <script src="directives/DriversListDirective.js"></script>
+    <script src="directives/TripsListDirective.js"></script>
+
+    <!-- Load Filters -->
+    <script src="filters/RangeFilter.js"></script>
+    <script src="filters/IsMineFilter.js"></script>
+
+    <!-- Load services -->
+    <script src="services/authentication/interceptorService.js"></script>
+    <script src="services/authentication/AccountService.js"></script>
+
+    <script src="services/resources/StatsResource.js"></script>
+    <script src="services/resources/TripsResource.js"></script>
+    <script src="services/resources/DriversResource.js"></script>
+    <script src="services/resources/CitiesResource.js"></script>
+
+    <!-- Load controllers -->
+    <script src="controllers/common/HeaderController.js"></script>
+    <script src="controllers/common/FooterController.js"></script>
+
+    <script src="controllers/authentication/LoginController.js"></script>
+    <script src="controllers/authentication/SignUpController.js"></script>
+
+    <script src="controllers/HomeController.js"></script>
+    <script src="controllers/DriversController.js"></script>
+    <script src="controllers/TripsController.js"></script>
+    <script src="controllers/CreateTripController.js"></script>
+</body>
+</html>

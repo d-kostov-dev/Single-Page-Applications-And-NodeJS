@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-3">
+        <h1>Details</h1>
+        <ul class="list-group">
+            <li class="list-group-item">
+                Driver: <a href="#/drivers/{{tripDetails.driverId}}">{{tripDetails.driverName}}</a>
+            </li>
+            <li class="list-group-item">
+                Free Seats: {{tripDetails.numberOfFreeSeats}}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-3">
+        <h1>Information</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Departure Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{tripDetails.from}}</td>
+                <td>{{tripDetails.to}}</td>
+                <td><a href="#/trips/{{tripDetails.id}}">{{tripDetails.departureDate | date:'medium'}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <h1>Passengers</h1>
+        <ul class="list-group">
+            <li class="list-group-item" data-ng-repeat="passenger in tripDetails.passengers">
+               {{passenger}}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-3">
+        <a class="btn btn-primary btn-lg btn-block" ng-click="joinTrip(tripDetails.id)">Join Trip</a>
+    </div>
+</div>

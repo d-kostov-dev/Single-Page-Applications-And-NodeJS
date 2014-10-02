@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-md-3">
+        <h1>Statistics</h1>
+        <ul class="list-group">
+            <li class="list-group-item">
+                Name: <a href="#/drivers/{{driverDetails.id}}">{{driverDetails.name}}</a>
+            </li>
+            <li class="list-group-item">
+                <span class="badge">{{driverDetails.numberOfUpcomingTrips}}</span>
+                Upcoming Trips
+            </li>
+            <li class="list-group-item">
+                <span class="badge">{{driverDetails.numberOfTotalTrips}}</span>
+                Total Trips
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <h1>Trips</h1>
+        <div class="row">
+            <div class="col-md-4">
+                Order By:
+                <select data-ng-model="orderType">
+                    <option value="from">From</option>
+                    <option value="to">To</option>
+                    <option value="-departureDate">Departure Date</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                Show Only:
+                <select data-ng-model="trip.isMine">
+                    <option value="">All</option>
+                    <option value="true">Mine</option>
+                    <option value="false">Drivers</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Driver</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Departure Date</th>
+                    <th>Free Seats</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="trip in driverDetails.trips | orderBy: orderType | filter:trip.isMine">
+                    <td><a href="#/drivers/{{trip.driverId}}">{{trip.driverName}}</a></td>
+                    <td>{{trip.from}}</a></td>
+                    <td>{{trip.to}}</a></td>
+                    <td><a href="#/trips/{{trip.id}}">{{trip.departureDate | date:'medium'}}</a></td>
+                    <td>{{trip.numberOfFreeSeats}}</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

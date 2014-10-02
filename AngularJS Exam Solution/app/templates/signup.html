@@ -1,0 +1,52 @@
+﻿<div class="row">
+    <div class="col-md-3"></div>
+
+    <div class="col-lg-6">
+        <div class="well bs-component">
+            <form class="form-horizontal form-Login" name="registrationForm" role="form">
+                <legend>Sign Up</legend>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Email</label>
+                    <div class="col-lg-9">
+                        <input type="email" class="form-control" placeholder="Email" data-ng-model="registration.email" required autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Password</label>
+                    <div class="col-lg-9">
+                        <input type="password" class="form-control" placeholder="Password" data-ng-model="registration.password" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Confirm Password</label>
+                    <div class="col-lg-9">
+                        <input type="password" class="form-control" placeholder="Confirm Password" data-ng-model="registration.confirmPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Is Driver</label>
+                    <div class="col-lg-9">
+                        <select data-ng-model="registration.isDriver" data-ng-change="showCarInput = registration.isDriver">
+                            <option value="false" ng-selected="true">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="showCarInput">
+                    <label class="col-lg-3 control-label">Car</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" placeholder="Car Make and model" data-ng-model="registration.car">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-info btn-block" type="submit" data-ng-click="signUp()">Register</button>
+            </form>
+            <a href="#/login" class="btn btn-default btn-sm btn-block">Login</a>
+            <hr/>
+            <div data-ng-hide="formMessage == ''" data-ng-class="(successfulRegistration) ? 'alert alert-success' : 'alert alert-danger'">
+                {{formMessage}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3"></div>
+</div>
