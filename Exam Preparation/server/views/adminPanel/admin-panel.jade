@@ -1,0 +1,61 @@
+extends ../index
+block main-content
+    if(usersData !== undefined)
+        .row
+            .col-lg-12
+                .page-header
+                    h1#tables Users
+                .bs-component
+                    table.table.table-striped.table-hover
+                        thead
+                            tr
+                                th Username
+                                th First Name
+                                th Last Name
+                                th Sex
+                                th Birth Date
+                                th -
+                                th -
+                        tbody
+                            each user in usersData
+                                tr
+                                    td #{user.username}
+                                    td #{user.firstName}
+                                    td #{user.lastName}
+                                    td #{user.sex}
+                                    td #{moment(user.birthDate).format("DD-MM-YYYY")}
+                                    if(user.username !== currentUser.username)
+                                        td
+                                            a.btn.btn-primary.btn-xs.btn-block(href='/users/edit/#{user._id}') Edit
+                                        td
+                                            a.btn.btn-danger.btn-xs.btn-block(href='/users/delete/#{user._id}') Delete
+                                    else
+                                        td
+                                        td
+
+        .row
+            .col-lg-12
+                .page-header
+                    h1#tables Pages
+                    .row
+                        .col-md-2
+                            a.btn.btn-primary.btn-xs.btn-block(href='/pages/create') Add New Page
+                .bs-component
+                    table.table.table-striped.table-hover
+                        thead
+                            tr
+                                th Title
+                                th Content
+                                th Creation Date
+                                th -
+                                th -
+                        tbody
+                            each page in pagesData
+                                tr
+                                    td #{page.title}
+                                    td #{page.content}
+                                    td #{moment(page.dateCreated).format("DD-MM-YYYY")}
+                                    td
+                                        a.btn.btn-primary.btn-xs.btn-block(href='/pages/edit/#{page._id}') Edit
+                                    td
+                                        a.btn.btn-danger.btn-xs.btn-block(href='/pages/delete/#{page._id}') Delete

@@ -1,0 +1,21 @@
+extends ../index
+block main-content
+    .row
+        .col-md-3
+        .col-lg-6
+            .well.bs-component
+                form.form-horizontal.form-Login(method="post", enctype="multipart/form-data")
+                    legend Create Page
+                    .form-group
+                        label.col-lg-3.control-label Title
+                        .col-lg-9
+                            input.form-control(type='text', placeholder='title', name="title")
+
+                    .form-group
+                        label.col-lg-3.control-label Content
+                        .col-lg-9
+                            textarea.form-control(name="content")
+
+                    button.btn.btn-primary.btn-info.btn-block(type='submit') Create Page
+                a.btn.btn-default.btn-sm.btn-block(href='/admin-panel') Cancel
+        .col-md-3

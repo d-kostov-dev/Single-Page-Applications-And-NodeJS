@@ -9,6 +9,8 @@ var express = require('express'),
     passport = require('passport');
 
 module.exports = function(app, config) {
+    app.locals.moment = require('moment');
+
     app.set('view engine', 'jade');
     app.set('views', config.rootPath + '/server/views');
 
@@ -60,6 +62,11 @@ module.exports = function(app, config) {
             app.locals.currentUser = undefined;
         }
 
+        next();
+    });
+
+    app.use(function (req, res, next) {
+        require("./initialData")(app);
         next();
     });
 };

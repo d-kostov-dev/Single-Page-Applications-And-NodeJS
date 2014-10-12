@@ -2,6 +2,12 @@ hr
 #footer
 .container
     .row
-        .col-md-12
+        .col-md-6
             p.text-muted.text-center
-                | Made By Pesho Dev International
+                | Made By &nbsp;
+                a(href="#") Pesho Dev International
+        .col-md-6
+            if(footerPages)
+                each page in footerPages
+                    a(href="/pages/#{page._id}") #{page.title}
+                    | &nbsp;&nbsp;&nbsp;

@@ -1,8 +1,6 @@
 module.exports = function(type) {
     var Model = require('mongoose').model(type);
-
-    console.log("--> " + type +" Repository Loaded");
-
+    
     return {
         name: type,
         createItem: function(entity, callback) {

@@ -1,0 +1,8 @@
+extends ../index
+block main-content
+    if(pageData !== undefined)
+        .row
+            .col-lg-12
+                h1 #{pageData.title}
+                .jumbotron
+                    | #{pageData.content}
