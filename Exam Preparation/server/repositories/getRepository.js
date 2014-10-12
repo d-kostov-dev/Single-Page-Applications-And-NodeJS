@@ -22,14 +22,14 @@ module.exports = function(type) {
             Model.find().count(callback);
         },
         getAllWithPaging: function (page, callback, orderBy, orderType, whereObj, pageSize) {
-
-            pageSize = pageSize || 10
+            whereObj = whereObj || {};
+            pageSize = pageSize || 10;
             page = page || 1;
             orderType = orderType === 'desc' ? '-' : '';
             orderBy = orderBy || '_id';
 
-            var query = Model.find()
-                .where(whereObj)
+            var query =
+                Model.find(whereObj)
                 .sort(orderType + orderBy)
                 .skip(pageSize * (page - 1))
                 .limit(pageSize);
