@@ -1,0 +1,26 @@
+extends ../index
+block main-content
+    if (currentUser)
+        .row
+            .col-md-3
+            .col-md-6
+                .panel.panel-primary
+                    .panel-heading
+                        h3.panel-title Username:&nbsp;
+                            strong #{currentUser.username}
+                    .panel-body
+                        if(currentUser.photo === undefined)
+                            img(class="img-responsive center-block img-thumbnail" src="/img/no-photo.png")
+                        else
+                            img(class="img-responsive center-block img-thumbnail" src="/user-images/#{currentUser.username}/#{currentUser.photo}")
+                        hr
+                        .bs-component
+                            ul.list-group
+                                li.list-group-item
+                                    | First Name: #{currentUser.firstName}
+                                li.list-group-item
+                                    | Last Name: #{currentUser.lastName}
+                                li.list-group-item
+                                    | Birth Date: #{currentUser.birthDate}
+                a.btn.btn-primary.btn-sm.btn-block(href='/edit-profile') Edit
+            .col-md-3

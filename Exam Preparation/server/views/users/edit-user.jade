@@ -1,0 +1,61 @@
+extends ../index
+block main-content
+    if(userToEdit)
+        .row
+            .col-md-3
+            .col-lg-6
+                .well.bs-component
+                    form.form-horizontal.form-Login(method="post", enctype="multipart/form-data")
+                        input(type="hidden" name="_id" value="#{userToEdit._id}")
+                        legend Edit #{userToEdit.username}'s Profile
+
+                        .form-group
+                            label.col-lg-3.control-label Username
+                            .col-lg-9
+                                input.form-control(type='text', placeholder='Username', name="username"
+                                value="#{userToEdit.username || ''}")
+
+                        .form-group
+                            label.col-lg-3.control-label First Name
+                            .col-lg-9
+                                input.form-control(type='text', placeholder='First Name', name="firstName"
+                                value="#{userToEdit.firstName || ''}")
+
+                        .form-group
+                            label.col-lg-3.control-label Last Name
+                            .col-lg-9
+                                input.form-control(type='text', placeholder='Last Name', name="lastName"
+                                value="#{userToEdit.lastName || ''}")
+
+                        .form-group
+                            label.col-lg-3.control-label Birth Date
+                            .col-lg-9
+                                input.form-control(type='text', placeholder='Birth Date', name="birthDate"
+                                value="#{userToEdit.birthDate || ''}")
+
+                        .form-group
+                            label.col-lg-3.control-label Sex
+                            .col-lg-9
+                                select.form-control(name="sex")
+                                    // Some shitty code here but ... no time now
+                                    if(userToEdit.sex === undefined)
+                                        option(value="" selected="selected") -- Select Sex --
+                                    else
+                                        option(value="") -- Select Sex --
+                                    if(userToEdit.sex === 'Male')
+                                        option(value="Male" selected="selected") Male
+                                    else
+                                        option(value="Male") Male
+                                    if(userToEdit.sex === 'Female')
+                                        option(value="Female" selected="selected") Female
+                                    else
+                                        option(value="Female") Female
+
+                        .form-group
+                            label.col-lg-3.control-label New Photo
+                            .col-lg-9
+                                input(type='file' name='photo')
+
+                        button.btn.btn-primary.btn-info.btn-block(type='submit') Edit Profile
+                    a.btn.btn-default.btn-sm.btn-block(href='/admin-panel') Cancel
+            .col-md-3

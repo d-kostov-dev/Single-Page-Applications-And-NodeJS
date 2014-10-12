@@ -1,0 +1,64 @@
+extends ../index
+block main-content
+    if(currentUser)
+        .row
+            .col-md-3
+            .col-lg-6
+                .well.bs-component
+                    form.form-horizontal.form-Login(method="post", enctype="multipart/form-data")
+                        input(type="hidden" name="_id" value="#{currentUser._id}")
+                        input(type="hidden" name="username" value="#{currentUser.username}")
+                        legend Edit Profile
+
+                        .form-group
+                            label.col-lg-3.control-label First Name
+                            .col-lg-9
+                                input.form-control(type='text', placeholder='First Name', name="firstName"
+                                value="#{currentUser.firstName || ''}")
+
+                        .form-group
+                            label.col-lg-3.control-label Last Name
+                            .col-lg-9
+                                input.form-control(type='text', placeholder='Last Name', name="lastName"
+                                value="#{currentUser.lastName || ''}")
+
+                        .form-group
+                            label.col-lg-3.control-label Birth Date
+                            .col-lg-9
+                                input.form-control(type='text', placeholder='Birth Date', name="birthDate"
+                                value="#{currentUser.birthDate || ''}")
+
+                        .form-group
+                            label.col-lg-3.control-label Sex
+                            .col-lg-9
+                                select.form-control(name="sex")
+                                    // Some shitty code here but ... no time now
+                                    if(currentUser.sex === undefined)
+                                        option(value="" selected="selected") -- Select Sex --
+                                    else
+                                        option(value="") -- Select Sex --
+
+                                    if(currentUser.sex === 'Male')
+                                        option(value="Male" selected="selected") Male
+                                    else
+                                        option(value="Male") Male
+
+                                    if(currentUser.sex === 'Female')
+                                        option(value="Female" selected="selected") Female
+                                    else
+                                        option(value="Female") Female
+
+                        .form-group
+                            label.col-lg-3.control-label New Photo
+                            .col-lg-9
+                                input(type='file' name='photo')
+
+                        .form-group
+                            label.col-lg-3.control-label New Password
+                            .col-lg-9
+                                input.form-control(type='password', name="password"
+                                value="#{currentUser.password || ''}")
+
+                        button.btn.btn-primary.btn-info.btn-block(type='submit') Edit Profile
+                    a.btn.btn-default.btn-sm.btn-block(href='/profile') Cancel
+            .col-md-3

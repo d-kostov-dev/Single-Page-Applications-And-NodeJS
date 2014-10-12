@@ -1,0 +1,23 @@
+.navbar.navbar-inverse
+    .container
+        .navbar-header
+            a.navbar-brand(href="/") Exam Title Here
+            ul.nav.navbar-nav
+                if (currentUser)
+                    li
+                        a(href="/profile") My Profile
+                    if(currentUser.roles.indexOf('admin') > -1)
+                        li
+                            a(href="/admin-panel") Admin Panel
+        .collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+                if (currentUser)
+                    li
+                        a(href="/profile") #{currentUser.username}
+                    li
+                        a(href="/logout") Logout
+                else
+                    li
+                        a(href="/login") Login
+                    li
+                        a(href="/register") Register

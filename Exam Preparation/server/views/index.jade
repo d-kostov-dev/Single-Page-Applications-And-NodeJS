@@ -1,0 +1,29 @@
+doctype
+html
+    head
+        title Exam Title Here
+        link(rel="stylesheet" href="/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/style.css")
+    body
+        include common/header
+
+        .container
+            .row
+                .col-md-3
+                .col-md-6
+                    if (errorMessage)
+                        .alert.alert-danger
+                            if(value instanceof Array)
+                                each error in errorMessage
+                                    p
+                                    | #{error}
+                            else
+                                p
+                                | #{errorMessage}
+                .col-md-3
+
+        .container
+            block main-content
+
+        include common/footer
+        include common/scripts
