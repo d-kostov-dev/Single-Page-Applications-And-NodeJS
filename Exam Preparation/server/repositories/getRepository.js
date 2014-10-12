@@ -1,6 +1,6 @@
 module.exports = function(type) {
     var Model = require('mongoose').model(type);
-    
+
     return {
         name: type,
         createItem: function(entity, callback) {
@@ -20,6 +20,21 @@ module.exports = function(type) {
         },
         countAll: function (callback) {
             Model.find().count(callback);
+        },
+        getAllWithPaging: function (page, callback, orderBy, orderType, whereObj, pageSize) {
+
+            pageSize = pageSize || 10
+            page = page || 1;
+            orderType = orderType === 'desc' ? '-' : '';
+            orderBy = orderBy || '_id';
+
+            var query = Model.find()
+                .where(whereObj)
+                .sort(orderType + orderBy)
+                .skip(pageSize * (page - 1))
+                .limit(pageSize);
+
+            query.exec(callback);
         }
     }
 };
